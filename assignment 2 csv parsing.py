@@ -1,19 +1,18 @@
-x=open("C:\\Users\\POOJAGUJRAL\\Desktop\\PYTHON\\Copy of datafile.csv","r")
-z=x.readlines()
-#print(z)
-x.seek(0)
-u=len(z)
-#print(u)
-p=list
-q=dict()
-y=0
-for i in range(1,u-1):
-    p=z[i].split(",")
-    q[p[0]]=p[3]
-    y+=int(p[3])    
-name=input("enter the name")          
-#print(q)
-print("average = ",y/35)
-for i in q:
-    if(i==name):
-        print(q[i])
+a = open("C:\\Users\\POOJAGUJRAL\\Desktop\\PYTHON\\dataset for assignment 2.csv",'r')
+
+b = a.readlines()
+a.close()
+
+d={}
+#print(b)
+for i in b:
+    #print(i)
+    d[i.split(',')[0]] = i.split(',')[3]
+    print(i.split(','))
+
+u = (input('Enter the State name--> '))
+'''for i in c:
+        d[i[0]]=i[3]'''
+
+print(d[u])
+z = input()
