@@ -1,0 +1,31 @@
+import json
+k=open("C:\\Users\\POOJAGUJRAL\\Desktop\\PYTHON\\Zomato data\\file1.json","r")
+#print(k.readlines())
+mydata=json.loads(k.readline())
+d={}
+b=0
+l=len(mydata)
+p=list()
+for i in range(l):
+	try:
+		a=mydata[i]['restaurants']
+		for j in range(len(a)):
+			n=a[j]['restaurant']['name']
+			r=float(a[j]['restaurant']['user_rating']['aggregate_rating'])
+			v=float(a[j]['restaurant']['user_rating']['votes'])
+			c=a[j]['restaurant']['location']['city']
+			m=r*v
+			p.append(m)
+			d[m]=[n,c]
+			if m>b:
+				b=m
+	except KeyError:
+		break		
+print(b)	
+print(d[b],'\n')
+p.sort(reverse=True)
+
+for i in range(5):
+	y=p[i]
+	print(y,d[y])
+print('\n')
