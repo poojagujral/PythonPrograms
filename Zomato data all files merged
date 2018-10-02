@@ -1,0 +1,60 @@
+import json
+k=open("C:\\Users\\POOJAGUJRAL\\Desktop\\PYTHON\\Zomato data\\file1.json","r")
+q=open("C:\\Users\\POOJAGUJRAL\\Desktop\\PYTHON\\Zomato data\\file2.json","r")
+w=open("C:\\Users\\POOJAGUJRAL\\Desktop\\PYTHON\\Zomato data\\file3.json","r")
+e=open("C:\\Users\\POOJAGUJRAL\\Desktop\\PYTHON\\Zomato data\\file4.json","r")
+#t=open("D://ML bvp//Data//file5.json","r")
+#print(k.readlines())
+mydata1=json.loads(k.readline())
+mydata2=json.loads(q.readline())
+mydata3=json.loads(w.readline())
+mydata4=json.loads(e.readline())
+#mydata5=json.loads(t.readline())
+z=[mydata1,mydata2,mydata3,mydata4]
+
+d={}
+l=list()
+i=0
+d2={}
+l2=list()
+for i in range(4):
+	l.clear()
+	b=0
+	for j in range(len(z[i])):
+		try:
+
+			a=z[i][j]['restaurants']
+			for k in range(len(a)):
+
+				n=a[k]['restaurant']['name']
+				r=float(a[k]['restaurant']['user_rating']['aggregate_rating'])
+				v=float(a[k]['restaurant']['user_rating']['votes'])
+				c=a[k]['restaurant']['location']['city']
+				m=r*v
+				l.append(m)
+				d[m]=[n,c]
+				if m>b:
+					b=m
+		except KeyError:
+			break
+	print(b,"\n",d[b])
+	l.sort(reverse=True)
+	print("\nTop 5 Restaurants in file",i+1,"-->")
+	for x in range(5):
+		y=l[x]
+		print(y,d[y])
+		l2.append(y)
+		d2[y]=[d[y]]
+	print('\n')
+#print(l)
+'''print(b,"\n",d[b],"\n\nTop 5 Restaurants-->")
+for p in range(5):
+	x=l[p]
+	print(d[x])'''
+l2.sort(reverse=True)
+print("\nTop 5 Restaurants overall-->")
+for i in range(5):
+	t=l2[i]
+	print(t,d2[t])
+print('\n')
+
